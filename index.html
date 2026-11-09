@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>GIS Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Mapbox GL JS CSS (v3.17+ needed for basemap colour overrides, 3D toggles) -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.28.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="map"></div>
+
+    <!-- Before / after compare: a default Mapbox Standard map clipped to the left of the divider -->
+    <div id="compare-layer" class="compare-layer" hidden>
+        <div id="compare-map"></div>
+        <span class="compare-tag compare-tag-left">Mapbox Standard &middot; default</span>
+    </div>
+    <span id="compare-tag-right" class="compare-tag compare-tag-right" hidden>Custom design</span>
+    <div id="compare-divider" class="compare-divider" role="slider" tabindex="0"
+         aria-label="Comparison divider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" hidden>
+        <span class="compare-handle" aria-hidden="true">&lsaquo;&nbsp;&rsaquo;</span>
+    </div>
+
+    <!-- Weather ambience layers (haze tint + lightning flash) -->
+    <div id="weather-overlay"></div>
+    <div id="lightning"></div>
+
+    <!-- Floating UI Control Panel -->
+    <div class="control-panel">
+        <h1>GIS Demo</h1>
+        <p>Interactive Map Prototype</p>
+        <hr />
+
+        <div class="control-group">
+            <div class="group-head">
+                <label for="time-slider">Time of Day</label>
+                <span id="time-label" class="group-value">Night</span>
+            </div>
+            <input id="time-slider" class="time-slider" type="range" min="0" max="3" step="1" value="3"
+                   aria-valuetext="Night" />
+            <div class="time-ticks" aria-hidden="true">
+                <span>Dawn</span><span>Day</span><span>Dusk</span><span>Night</span>
+            </div>
+            <button id="btn-cycle" class="gap-top">Play day cycle</button>
+            <div class="segmented cols-2 gap-top">
+                <button id="btn-light">Light</button>
+                <button id="btn-dark" class="active">Dark</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Season</label>
+            <div class="segmented cols-2">
+                <button data-season="spring">Spring</button>
+                <button data-season="summer">Summer</button>
+                <button data-season="autumn">Autumn</button>
+                <button data-season="winter">Winter</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Weather</label>
+            <div class="segmented cols-3">
+                <button data-weather="clear" class="active">Clear</button>
+                <button data-weather="cloudy">Cloudy</button>
+                <button data-weather="fog">Fog</button>
+                <button data-weather="rain">Rain</button>
+                <button data-weather="snow">Snow</button>
+                <button data-weather="storm">Storm</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>Explore</label>
+            <button id="btn-tour">Start guided tour</button>
+            <button id="btn-compare">Compare with default style</button>
+        </div>
+
+        <div class="control-group">
+            <label>View Mode</label>
+            <button id="btn-3d" class="active">3D Buildings On</button>
+        </div>
+    </div>
+
+    <!-- Guided tour caption card -->
+    <div id="tour-card" class="tour-card" role="region" aria-live="polite" aria-label="Guided tour" hidden>
+        <div class="tour-progress"><i id="tour-bar"></i></div>
+        <div class="tour-meta">
+            <span id="tour-count">1 / 5</span>
+            <span id="tour-dots" class="tour-dots" aria-hidden="true"></span>
+        </div>
+        <h2 id="tour-title"></h2>
+        <p id="tour-text"></p>
+        <div class="tour-actions">
+            <button id="tour-prev">Previous</button>
+            <button id="tour-pause">Pause</button>
+            <button id="tour-next" class="primary">Next</button>
+            <button id="tour-close" aria-label="End tour">End</button>
+        </div>
+    </div>
+
+    <!-- Mapbox GL JS Library -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.28.1/mapbox-gl.js"></script>
+    <script type="module" src="/app.js"></script>
+</body>
+</html>

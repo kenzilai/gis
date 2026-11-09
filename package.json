@@ -1,0 +1,16 @@
+{
+  "name": "gis",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "vite": "^8.3.6"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
