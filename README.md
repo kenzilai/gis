@@ -23,5 +23,5 @@ This is a small project demonstrating the familarity with the use of GIS tools.
 
 ## 3D View
 
-![alt text](assets\3d-near.png)
-![alt text](assets\3d-far.png)
+![alt text](assets/3d-near.png)
+![alt text](assets/3d-far.png)
